@@ -1,0 +1,96 @@
+.main-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-text {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.log-in-icon {
+  fill: transparent;
+  stroke: var(--yellow);
+
+  transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.link,
+.log-in-btn {
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.link:hover,
+.link:focus,
+.log-in-btn:hover,
+.log-in-btn:focus {
+  color: var(--yellow);
+}
+
+.log-in-btn:hover .log-in-icon {
+  stroke: var(--orange);
+  transform: translateX(2px);
+}
+
+.register-btn {
+  max-width: 166px;
+  min-height: 48px;
+
+  padding: 14px 39px;
+  border-radius: 12px;
+
+  font-weight: 700;
+  color: #fff;
+  background: var(--black);
+  border: 1px solid var(--black);
+
+  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.register-btn:hover,
+.register-btn:focus {
+  background: #fff;
+  color: var(--black);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.g-16 {
+  gap: 16px;
+}
+
+.burger {
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.burger:hover {
+  fill: var(--yellow);
+}
+
+@media (max-width: 768px) {
+  .logo-text,
+  .register-btn,
+  .log-in-btn {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .burger {
+    display: none;
+  }
+
+  .g-28 {
+    gap: 28px;
+  }
+}

@@ -2,6 +2,7 @@
 
 :root {
   font-family: "Roboto", sans-serif;
+  color: var(--black);
   line-height: 1.5;
 }
 
@@ -13,6 +14,10 @@ body {
   position: relative;
   width: 100%;
   min-height: 100vh;
+}
+
+button {
+  color: var(--black);
 }
 
 .visually-hidden {
