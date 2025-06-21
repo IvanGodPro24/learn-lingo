@@ -44,7 +44,8 @@
 }
 
 .btn {
-  min-width: 267px;
+  display: block;
+  max-width: 280px;
   padding: 16px 88px;
   border-radius: 12px;
 
@@ -53,6 +54,7 @@
   font-weight: 700;
   font-size: 18px;
   line-height: 1.6;
+  text-align: center;
 
   transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -136,7 +138,6 @@
   }
 
   .btn {
-    display: block;
     margin: 0 auto;
   }
 

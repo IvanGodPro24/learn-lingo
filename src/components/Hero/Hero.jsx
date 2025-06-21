@@ -2,6 +2,7 @@ import Container from "../Container/Container";
 import css from "./Hero.module.css";
 import avatar from "../../img/avatar.png";
 import mac from "../../img/mac-yellow.png";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -19,9 +20,9 @@ const Hero = () => {
               Tutors: Elevate your language proficiency to new heights by
               connecting with highly qualified and experienced tutors.
             </p>
-            <button type="button" className={css.btn}>
+            <Link to="/teachers" className={css.btn}>
               Get started
-            </button>
+            </Link>
           </div>
 
           <div className={css["img-container"]}>
