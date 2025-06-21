@@ -7,7 +7,7 @@ import Container from "../Container/Container";
 const Header = () => {
   return (
     <Container>
-      <div className={css["main-container"]}>
+      <header className={css["main-container"]}>
         <div>
           <Link className={css.container}>
             <svg width="28" height="28">
@@ -17,14 +17,14 @@ const Header = () => {
           </Link>
         </div>
 
-        <div className={clsx(css.container, css["g-28"])}>
+        <nav className={clsx(css.container, css["g-28"])}>
           <NavLink to="/" className={css.link}>
             Home
           </NavLink>
           <NavLink to="/teachers" className={css.link}>
             Teachers
           </NavLink>
-        </div>
+        </nav>
 
         <div className={clsx(css.container, css["g-16"])}>
           <button className={css.burger}>
@@ -45,7 +45,7 @@ const Header = () => {
             Registration
           </button>
         </div>
-      </div>
+      </header>
     </Container>
   );
 };
