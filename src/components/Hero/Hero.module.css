@@ -43,27 +43,6 @@
   margin-bottom: 64px;
 }
 
-.btn {
-  display: block;
-  max-width: 280px;
-  padding: 16px 88px;
-  border-radius: 12px;
-
-  background: var(--yellow);
-
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 1.6;
-  text-align: center;
-
-  transition: background 250ms cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.btn:hover,
-.btn:focus {
-  background: var(--light-yellow);
-}
-
 .img-container {
   position: relative;
   min-width: 568px;
@@ -137,10 +116,6 @@
     margin-right: auto;
   }
 
-  .btn {
-    margin: 0 auto;
-  }
-
   .img-container {
     min-width: 100%;
   }
@@ -168,11 +143,6 @@
 @media (max-width: 767px) {
   .hero-text-container {
     padding: 50px 20px;
-  }
-
-  .btn {
-    min-width: 235px;
-    padding: 16px 70px;
   }
 
   .list {

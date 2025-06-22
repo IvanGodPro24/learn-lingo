@@ -2,7 +2,7 @@ import Container from "../Container/Container";
 import css from "./Hero.module.css";
 import avatar from "../../img/avatar.png";
 import mac from "../../img/mac-yellow.png";
-import { Link } from "react-router-dom";
+import Button from "../Button/Button";
 
 const Hero = () => {
   return (
@@ -20,9 +20,7 @@ const Hero = () => {
               Tutors: Elevate your language proficiency to new heights by
               connecting with highly qualified and experienced tutors.
             </p>
-            <Link to="/teachers" className={css.btn}>
-              Get started
-            </Link>
+            <Button to="/teachers">Get started</Button>
           </div>
 
           <div className={css["img-container"]}>
