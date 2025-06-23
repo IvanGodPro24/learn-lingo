@@ -1,9 +1,11 @@
 import Modal from "react-modal";
+import * as Yup from "yup";
 import css from "./AuthModal.module.css";
 import icons from "../../img/icons.svg";
 import Button from "../Button/Button";
 import { useId, useState } from "react";
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 const customStyles = {
   overlay: {
@@ -21,6 +23,22 @@ const customStyles = {
     borderRadius: "12px",
   },
 };
+
+const loginSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Please enter a valid email")
+    .required("Email is required"),
+  password: Yup.string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required"),
+});
+
+const registerSchema = loginSchema.shape({
+  username: Yup.string()
+    .min(2, "Name must be at least 2 characters")
+    .max(32, "Name must be less than 32 characters")
+    .required("Name is required"),
+});
 
 Modal.setAppElement("#root");
 
@@ -40,8 +58,20 @@ const AuthModal = ({
 
   const toggleShowPassword = () => setIsPasswordShown((prev) => !prev);
 
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(isRegisterModal ? registerSchema : loginSchema),
+  });
+
   const [data, setData] = useState("");
+
+  const onSubmit = (data) => {
+    setData(data);
+    console.log(data);
+  };
 
   return (
     <Modal
@@ -61,26 +91,34 @@ const AuthModal = ({
         <p className={css.text}>{text}</p>
       </div>
 
-      <form onSubmit={handleSubmit((data) => setData(data))}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className={css.container}>
           {isRegisterModal && (
-            <input
-              {...register("username")}
-              type="text"
-              name="username"
-              id={nameId}
-              className={css.input}
-              placeholder="Name"
-            />
+            <div className="relative">
+              <input
+                {...register("username")}
+                type="text"
+                name="username"
+                id={nameId}
+                className={css.input}
+                placeholder="Name"
+              />
+              <div className="error">{errors.username?.message}</div>
+            </div>
           )}
-          <input
-            {...register("email")}
-            type="email"
-            name="email"
-            id={emailId}
-            className={css.input}
-            placeholder="Email"
-          />
+
+          <div className="relative">
+            <input
+              {...register("email")}
+              type="email"
+              name="email"
+              id={emailId}
+              className={css.input}
+              placeholder="Email"
+            />
+            <div className="error">{errors.email?.message}</div>
+          </div>
+
           <div className="relative">
             <input
               {...register("password")}
@@ -105,6 +143,8 @@ const AuthModal = ({
                 ></use>
               </svg>
             </button>
+
+            <div className="error">{errors.password?.message}</div>
           </div>
         </div>
 
