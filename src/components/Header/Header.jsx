@@ -5,10 +5,22 @@ import clsx from "clsx";
 import Container from "../Container/Container";
 import useModal from "../../hooks/useModal";
 import AuthModal from "../AuthModal/AuthModal";
+import BurgerModal from "../BurgerModal/BurgerModal";
 
 const Header = () => {
   const registerModal = useModal();
   const loginModal = useModal();
+  const burgerModal = useModal();
+
+  const openRegister = () => {
+    burgerModal.closeModal();
+    registerModal.openModal();
+  };
+
+  const openLogIn = () => {
+    burgerModal.closeModal();
+    loginModal.openModal();
+  };
 
   return (
     <Container>
@@ -32,7 +44,11 @@ const Header = () => {
         </nav>
 
         <div className={clsx(css.container, css["g-16"])}>
-          <button className={css.burger}>
+          <button
+            type="button"
+            className={css.burger}
+            onClick={burgerModal.openModal}
+          >
             <svg width="20" height="20">
               <use href={`${icons}#icon-burger`}></use>
             </svg>
@@ -72,6 +88,13 @@ const Header = () => {
         title="Log In"
         text="Welcome back! Please enter your credentials to access your account and continue your search for an teacher."
         btn="Log In"
+      />
+
+      <BurgerModal
+        isOpen={burgerModal.isOpen}
+        onClose={burgerModal.closeModal}
+        isRegister={openRegister}
+        isLogIn={openLogIn}
       />
     </Container>
   );

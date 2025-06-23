@@ -10,3 +10,20 @@
 .ReactModal__Overlay--before-close {
   opacity: 0;
 }
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.icon {
+  stroke: var(--black);
+
+  transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.close:hover .icon,
+.close:focus .icon {
+  stroke: var(--yellow);
+}

@@ -46,8 +46,8 @@ const AuthModal = ({
       style={customStyles}
       closeTimeoutMS={250}
     >
-      <button onClick={onClose} className={css.close}>
-        <svg width="32" height="32" className={css.icon}>
+      <button onClick={onClose} className="close">
+        <svg width="32" height="32" className="icon">
           <use href={`${icons}#icon-close`}></use>
         </svg>
       </button>
