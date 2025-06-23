@@ -3,6 +3,7 @@ import css from "./AuthModal.module.css";
 import icons from "../../img/icons.svg";
 import Button from "../Button/Button";
 import { useId, useState } from "react";
+import { useForm } from "react-hook-form";
 
 const customStyles = {
   overlay: {
@@ -39,6 +40,9 @@ const AuthModal = ({
 
   const toggleShowPassword = () => setIsPasswordShown((prev) => !prev);
 
+  const { register, handleSubmit } = useForm();
+  const [data, setData] = useState("");
+
   return (
     <Modal
       isOpen={isOpen}
@@ -57,28 +61,31 @@ const AuthModal = ({
         <p className={css.text}>{text}</p>
       </div>
 
-      <form>
+      <form onSubmit={handleSubmit((data) => setData(data))}>
         <div className={css.container}>
           {isRegisterModal && (
             <input
+              {...register("username")}
               type="text"
-              name="user-name"
+              name="username"
               id={nameId}
               className={css.input}
               placeholder="Name"
             />
           )}
           <input
+            {...register("email")}
             type="email"
-            name="user-email"
+            name="email"
             id={emailId}
             className={css.input}
             placeholder="Email"
           />
           <div className="relative">
             <input
+              {...register("password")}
               type={isPasswordShown ? "text" : "password"}
-              name="user-password"
+              name="password"
               id={passwordId}
               className={css.input}
               placeholder="Password"
