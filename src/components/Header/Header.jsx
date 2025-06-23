@@ -3,8 +3,13 @@ import icons from "../../img/icons.svg";
 import { Link, NavLink } from "react-router-dom";
 import clsx from "clsx";
 import Container from "../Container/Container";
+import useModal from "../../hooks/useModal";
+import AuthModal from "../AuthModal/AuthModal";
 
 const Header = () => {
+  const registerModal = useModal();
+  const loginModal = useModal();
+
   return (
     <Container>
       <header className={css["main-container"]}>
@@ -35,17 +40,39 @@ const Header = () => {
           <button
             type="button"
             className={clsx(css.container, css["log-in-btn"])}
+            onClick={loginModal.openModal}
           >
             <svg className={css["log-in-icon"]} width="20" height="20">
               <use href={`${icons}#icon-log-in`}></use>
             </svg>
             <p className={css.text}>Log in</p>
           </button>
-          <button type="button" className={css["register-btn"]}>
+          <button
+            type="button"
+            className={css["register-btn"]}
+            onClick={registerModal.openModal}
+          >
             Registration
           </button>
         </div>
       </header>
+
+      <AuthModal
+        isOpen={registerModal.isOpen}
+        onClose={registerModal.closeModal}
+        title="Registration"
+        text="Thank you for your interest in our platform! In order to register, we need some information. Please provide us with the following information"
+        btn="Sign Up"
+        isRegisterModal={true}
+      />
+
+      <AuthModal
+        isOpen={loginModal.isOpen}
+        onClose={loginModal.closeModal}
+        title="Log In"
+        text="Welcome back! Please enter your credentials to access your account and continue your search for an teacher."
+        btn="Log In"
+      />
     </Container>
   );
 };

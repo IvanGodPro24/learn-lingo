@@ -1,6 +1,5 @@
 .btn {
   display: block;
-  max-width: 280px;
   padding: 16px 88px;
   border-radius: 12px;
 
@@ -17,6 +16,14 @@
 .btn:hover,
 .btn:focus {
   background: var(--light-yellow);
+}
+
+.link {
+  max-width: 280px;
+}
+
+.submit-btn {
+  padding: 16px 187px;
 }
 
 @media (max-width: 1439px) {

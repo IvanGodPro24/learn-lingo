@@ -20,7 +20,9 @@ const Hero = () => {
               Tutors: Elevate your language proficiency to new heights by
               connecting with highly qualified and experienced tutors.
             </p>
-            <Button to="/teachers">Get started</Button>
+            <Button to="/teachers" isLink={true}>
+              Get started
+            </Button>
           </div>
 
           <div className={css["img-container"]}>

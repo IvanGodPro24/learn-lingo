@@ -1,4 +1,5 @@
 @import url("./reset.css");
+@import url("./modal.css");
 
 :root {
   font-family: "Roboto", sans-serif;
@@ -18,6 +19,10 @@ body {
 
 button {
   color: var(--black);
+}
+
+.relative {
+  position: relative;
 }
 
 .visually-hidden {
