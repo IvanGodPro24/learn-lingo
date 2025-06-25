@@ -47,6 +47,10 @@
   box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3);
 }
 
+.pwd {
+  padding: 16px 55px 16px 18px;
+}
+
 .eye-btn {
   position: absolute;
   top: 50%;

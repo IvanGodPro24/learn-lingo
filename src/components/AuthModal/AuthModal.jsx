@@ -6,6 +6,11 @@ import Button from "../Button/Button";
 import { useId, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { login, signUp } from "../../redux/auth/operations";
+import clsx from "clsx";
+import { toast } from "sonner";
 
 const customStyles = {
   overlay: {
@@ -66,11 +71,26 @@ const AuthModal = ({
     resolver: yupResolver(isRegisterModal ? registerSchema : loginSchema),
   });
 
-  const [data, setData] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const onSubmit = (data) => {
-    setData(data);
-    console.log(data);
+  const from = location.state?.from?.pathname || "/teachers";
+
+  const onSubmit = async ({ email, password, username }) => {
+    try {
+      isRegisterModal
+        ? await dispatch(signUp({ email, password, username })).unwrap()
+        : await dispatch(login({ email, password })).unwrap();
+
+      navigate(from, { replace: true });
+
+      isRegisterModal
+        ? toast.success("Registration successful! Welcome!")
+        : toast.success("Log in successful! Welcome!");
+    } catch (error) {
+      toast.error(error || "An error occurred during auth!");
+    }
   };
 
   return (
@@ -125,7 +145,7 @@ const AuthModal = ({
               type={isPasswordShown ? "text" : "password"}
               name="password"
               id={passwordId}
-              className={css.input}
+              className={clsx(css.input, css.pwd)}
               placeholder="Password"
             />
             <button

@@ -1,5 +1,10 @@
 import css from "./Header.module.css";
 import icons from "../../img/icons.svg";
+import { useSelector } from "react-redux";
+import { selectUser, selectisLoggedIn } from "../../redux/auth/selectors";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/auth/operations";
 import { Link, NavLink } from "react-router-dom";
 import clsx from "clsx";
 import Container from "../Container/Container";
@@ -8,9 +13,15 @@ import AuthModal from "../AuthModal/AuthModal";
 import BurgerModal from "../BurgerModal/BurgerModal";
 
 const Header = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
   const registerModal = useModal();
   const loginModal = useModal();
   const burgerModal = useModal();
+
+  const user = useSelector(selectUser);
+  const isLoggedIn = useSelector(selectisLoggedIn);
 
   const openRegister = () => {
     burgerModal.closeModal();
@@ -20,6 +31,12 @@ const Header = () => {
   const openLogIn = () => {
     burgerModal.closeModal();
     loginModal.openModal();
+  };
+
+  const handleLogout = () => {
+    dispatch(logout());
+
+    navigate("/");
   };
 
   return (
@@ -44,32 +61,52 @@ const Header = () => {
         </nav>
 
         <div className={clsx(css.container, css["g-16"])}>
-          <button
-            type="button"
-            className={css.burger}
-            onClick={burgerModal.openModal}
-          >
-            <svg width="20" height="20">
-              <use href={`${icons}#icon-burger`}></use>
-            </svg>
-          </button>
-          <button
-            type="button"
-            className={clsx(css.container, css["log-in-btn"])}
-            onClick={loginModal.openModal}
-          >
-            <svg className={css["log-in-icon"]} width="20" height="20">
-              <use href={`${icons}#icon-log-in`}></use>
-            </svg>
-            <p className={css.text}>Log in</p>
-          </button>
-          <button
-            type="button"
-            className={css["register-btn"]}
-            onClick={registerModal.openModal}
-          >
-            Registration
-          </button>
+          {isLoggedIn ? (
+            <>
+              <div className={css.avatar}>
+                {user.displayName ? user.displayName[0] : user.email[0]}
+              </div>
+              <button
+                type="button"
+                className={clsx(css.container, css["log-out-btn"])}
+                onClick={handleLogout}
+              >
+                <svg className={css["log-in-icon"]} width="20" height="20">
+                  <use href={`${icons}#icon-log-in`}></use>
+                </svg>
+                <p className={css["log-out-text"]}>Log out</p>
+              </button>
+            </>
+          ) : (
+            <>
+              <button
+                type="button"
+                className={css.burger}
+                onClick={burgerModal.openModal}
+              >
+                <svg width="20" height="20">
+                  <use href={`${icons}#icon-burger`}></use>
+                </svg>
+              </button>
+              <button
+                type="button"
+                className={clsx(css.container, css["log-in-btn"])}
+                onClick={loginModal.openModal}
+              >
+                <svg className={css["log-in-icon"]} width="20" height="20">
+                  <use href={`${icons}#icon-log-in`}></use>
+                </svg>
+                <p className={css.text}>Log in</p>
+              </button>
+              <button
+                type="button"
+                className={css["register-btn"]}
+                onClick={registerModal.openModal}
+              >
+                Registration
+              </button>
+            </>
+          )}
         </div>
       </header>
 

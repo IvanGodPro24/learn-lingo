@@ -1,7 +1,9 @@
 const TeachersPage = () => {
   return (
-    <div>TeachersPage</div>
-  )
-}
+    <>
+      <div>TeachersPage</div>
+    </>
+  );
+};
 
-export default TeachersPage
+export default TeachersPage;

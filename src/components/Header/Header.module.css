@@ -12,6 +12,16 @@
   gap: 8px;
 }
 
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  background-color: var(--yellow);
+}
+
 .logo-text {
   font-weight: 500;
   font-size: 20px;
@@ -27,18 +37,22 @@
 }
 
 .link,
-.log-in-btn {
+.log-in-btn,
+.log-out-btn {
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .link:hover,
 .link:focus,
 .log-in-btn:hover,
-.log-in-btn:focus {
+.log-in-btn:focus,
+.log-out-btn:hover,
+.log-out-btn:focus {
   color: var(--yellow);
 }
 
-.log-in-btn:hover .log-in-icon {
+.log-in-btn:hover .log-in-icon,
+.log-out-btn:hover .log-in-icon {
   stroke: var(--orange);
   transform: translateX(2px);
 }
@@ -80,7 +94,8 @@
 @media (max-width: 767px) {
   .logo-text,
   .register-btn,
-  .log-in-btn {
+  .log-in-btn,
+  .log-out-text {
     display: none;
   }
 }
