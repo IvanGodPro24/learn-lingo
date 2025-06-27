@@ -43,7 +43,7 @@ const Header = () => {
     <Container>
       <header className={css["main-container"]}>
         <div>
-          <Link className={css.container}>
+          <Link to="/" className={css.container}>
             <svg width="28" height="28">
               <use href={`${icons}#icon-ukraine`}></use>
             </svg>
