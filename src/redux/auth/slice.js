@@ -1,19 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { current, login, logout, signUp } from "./operations";
 
-const handlePending = (state) => {
-  state.loading = true;
-};
-
 const handleRejected = (state, action) => {
-  state.loading = false;
   state.error = action.payload;
 };
 
 const initialState = {
   user: null,
   error: null,
-  loading: null,
+  isInitialized: false,
 };
 
 const authSlice = createSlice({
@@ -24,30 +19,31 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(login.fulfilled, (state, action) => {
-        state.loading = false;
         state.error = null;
         state.user = action.payload;
       })
 
       .addCase(signUp.fulfilled, (state, action) => {
-        state.loading = false;
         state.error = null;
         state.user = action.payload;
       })
 
       .addCase(logout.fulfilled, (state) => {
-        state.loading = false;
         state.error = null;
         state.user = null;
       })
 
       .addCase(current.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.loading = false;
         state.error = null;
+        state.isInitialized = true;
       })
 
-      .addMatcher((action) => action.type.endsWith("pending"), handlePending)
+      .addCase(current.rejected, (state, action) => {
+        state.error = action.payload;
+        state.isInitialized = true;
+      })
+
       .addMatcher((action) => action.type.endsWith("rejected"), handleRejected);
   },
 });

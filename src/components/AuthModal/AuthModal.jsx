@@ -85,6 +85,8 @@ const AuthModal = ({
 
       navigate(from, { replace: true });
 
+      onClose();
+
       isRegisterModal
         ? toast.success("Registration successful! Welcome!")
         : toast.success("Log in successful! Welcome!");

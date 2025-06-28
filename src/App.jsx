@@ -4,7 +4,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import PrivateRoute from "./PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
-import { selectLoading } from "./redux/auth/selectors";
+import { selectIsInitialized } from "./redux/auth/selectors";
 import { useEffect } from "react";
 import { current } from "./redux/auth/operations";
 import Loader from "./components/Loader/Loader";
@@ -17,20 +17,20 @@ const FavoritesPage = lazy(() => import("./pages/FavoritesPage/FavoritesPage"));
 function App() {
   const dispatch = useDispatch();
 
-  const isLoading = useSelector(selectLoading);
+  const isInitialized = useSelector(selectIsInitialized);
 
   useEffect(() => {
     dispatch(current());
   }, [dispatch]);
 
-  return isLoading ? (
+  return !isInitialized ? (
     <Loader />
   ) : (
     <>
       <Toaster expand position="top-center" />
 
       <Layout>
-        <Suspense>
+        <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route element={<PrivateRoute to="/" />}>

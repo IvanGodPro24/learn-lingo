@@ -1,5 +1,5 @@
 export const selectUser = (state) => state.auth.user;
 
-export const selectLoading = (state) => state.auth.loading;
+export const selectIsInitialized = (state) => state.auth.isInitialized;
 
 export const selectisLoggedIn = (state) => !!state.auth.user;
