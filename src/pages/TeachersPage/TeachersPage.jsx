@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { getTeachers } from "../../redux/teachers/operations";
 import Loader from "../../components/Loader/Loader";
 import TeachersList from "../../components/TeachersList/TeachersList";
+import css from "./TeachersPage.module.css";
 
 const TeachersPage = () => {
   const dispatch = useDispatch();
@@ -20,9 +21,9 @@ const TeachersPage = () => {
   if (isLoading) return <Loader />;
 
   return (
-    <div>
+    <section className={css.section}>
       <TeachersList teachers={teachers} />
-    </div>
+    </section>
   );
 };
 

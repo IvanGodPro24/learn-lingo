@@ -21,3 +21,8 @@
     transform: translateY(0);
   }
 }
+
+.underline {
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+}

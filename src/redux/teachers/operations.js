@@ -14,7 +14,6 @@ export const getTeachers = createAsyncThunk(
       }
 
       const teachersData = snapshot.val();
-      console.log("Teachers data:", teachersData);
 
       return Object.entries(teachersData).map(([id, data]) => ({
         id,

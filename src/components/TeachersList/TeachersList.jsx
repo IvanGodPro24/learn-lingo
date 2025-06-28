@@ -3,7 +3,7 @@ import css from "./TeachersList.module.css";
 
 const TeachersList = ({ teachers }) => {
   return (
-    <ul>
+    <ul className={css.list}>
       {teachers.map(
         ({
           id,
@@ -20,7 +20,7 @@ const TeachersList = ({ teachers }) => {
           rating,
           reviews,
         }) => (
-          <li key={id}>
+          <li key={id} className={css.item}>
             <TeachersItem
               name={name}
               surname={surname}
