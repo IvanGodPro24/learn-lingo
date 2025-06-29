@@ -22,12 +22,11 @@
 }
 
 .main-container {
-  min-width: 984px;
+  flex-grow: 1;
 }
 
 .top-container {
   display: flex;
-  justify-content: space-between;
   align-items: baseline;
 
   margin-bottom: 32px;
@@ -53,25 +52,16 @@
 
 .list {
   display: flex;
+  flex-wrap: wrap;
   gap: 32px;
 }
 
 .item {
   position: relative;
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 8px;
-}
-
-.item:not(:last-child)::after {
-  content: "";
-  position: absolute;
-
-  right: -16px;
-
-  width: 1px;
-  height: 16px;
-  background-color: rgba(18, 20, 23, 0.2);
 }
 
 .icon {
@@ -85,6 +75,12 @@
 
 .price {
   color: #38cd3e;
+}
+
+.heart-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
 }
 
 .description-list {
@@ -116,6 +112,8 @@
 
 .levels-list {
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
@@ -125,7 +123,6 @@
 }
 
 .levels-item {
-  min-width: 110px;
   padding: 8px 12px;
 
   border-radius: 35px;
@@ -186,4 +183,49 @@
 .extended-content.expanded {
   max-height: 2000px;
   opacity: 1;
+}
+
+@media (max-width: 1279px) {
+  .avatar-container {
+    margin: 0 auto;
+  }
+
+  .top-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+
+  .item {
+    flex-basis: calc((100% - 32px) / 2);
+  }
+
+  .secondary {
+    text-align: center;
+  }
+
+  .levels-list {
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1280px) {
+  .top-container {
+    gap: 100px;
+  }
+
+  .list {
+    flex-wrap: nowrap;
+  }
+
+  .item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+
+    right: -16px;
+
+    width: 1px;
+    height: 16px;
+    background-color: rgba(18, 20, 23, 0.2);
+  }
 }

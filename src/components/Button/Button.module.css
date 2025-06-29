@@ -27,9 +27,9 @@
 }
 
 .book-btn {
-  padding: 16px 48px;
+  padding: 16px 46px !important;
 
-  margin-top: 32px;
+  margin-top: 32px !important;
 }
 
 @media (max-width: 1439px) {

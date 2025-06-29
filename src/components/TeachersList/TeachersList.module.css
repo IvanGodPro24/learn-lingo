@@ -7,12 +7,26 @@
 }
 
 .item {
+  position: relative;
+  max-width: 90%;
   display: flex;
+  flex-wrap: wrap;
   gap: 48px;
   border-radius: 24px;
   border: 1px solid var(--yellow);
   padding: 24px;
   background: #fff;
+}
 
-  min-width: 1184px;
+@media (min-width: 768px) {
+  .item {
+    max-width: 700px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .item {
+    flex-wrap: nowrap;
+    min-width: 1184px;
+  }
 }

@@ -68,7 +68,7 @@ const TeachersItem = ({
             </li>
           </ul>
 
-          <button type="button">
+          <button type="button" className={css['heart-btn']}>
             <svg width="26" height="26" className={css.icon}>
               <use href={`${icons}#icon-heart`}></use>
             </svg>
