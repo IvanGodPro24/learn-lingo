@@ -1,6 +1,8 @@
 import css from "./TeachersItem.module.css";
+import { useState } from "react";
 import icons from "../../img/icons.svg";
 import clsx from "clsx";
+import Button from "../Button/Button";
 
 const TeachersItem = ({
   name,
@@ -16,6 +18,10 @@ const TeachersItem = ({
   rating,
   reviews,
 }) => {
+  const [isExtended, setIsExtended] = useState(false);
+
+  const toggleExtended = () => setIsExtended((prev) => !prev);
+
   return (
     <>
       <div className={clsx("relative", css["avatar-container"])}>
@@ -89,8 +95,52 @@ const TeachersItem = ({
           </li>
         </ul>
 
-        <button type="button" className={clsx(css.read, "underline")}>
-          Read more
+        <div
+          className={clsx(css["extended-content"], {
+            [css.expanded]: isExtended,
+          })}
+        >
+          {isExtended && (
+            <>
+              <p className={css.text}>{experience}</p>
+
+              <ul>
+                {reviews.map(
+                  ({ reviewer_name, reviewer_rating, comment }, index) => (
+                    <li className={css.reviews} key={index}>
+                      <div className={css["reviews-container"]}>
+                        <svg width="44" height="44" className={css.user}>
+                          <use href={`${icons}#icon-user`}></use>
+                        </svg>
+                        <div className={css["rating-container"]}>
+                          <p className={css.secondary}>{reviewer_name}</p>
+                          <div className={css["internal-rating-container"]}>
+                            <svg width="16" height="16" className={css.fill}>
+                              <use href={`${icons}#icon-star`}></use>
+                            </svg>
+                            <p>
+                              {Number.isInteger(reviewer_rating)
+                                ? `${reviewer_rating}.0`
+                                : reviewer_rating}
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <p>{comment}</p>
+                    </li>
+                  )
+                )}
+              </ul>
+            </>
+          )}
+        </div>
+
+        <button
+          type="button"
+          className={clsx(css.read, "underline")}
+          onClick={toggleExtended}
+        >
+          {isExtended ? "Read less" : "Read more"}
         </button>
 
         <ul className={css["levels-list"]}>
@@ -100,6 +150,8 @@ const TeachersItem = ({
             </li>
           ))}
         </ul>
+
+        {isExtended && <Button type="button">Book trial lesson</Button>}
       </div>
     </>
   );

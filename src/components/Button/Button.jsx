@@ -10,7 +10,10 @@ const Button = ({ children, to, isLink = false, onClick, type = "submit" }) => {
   ) : (
     <button
       type={type}
-      className={clsx(css.btn, css["submit-btn"])}
+      className={clsx(
+        css.btn,
+        type === "submit" ? css["submit-btn"] : css["book-btn"]
+      )}
       onClick={onClick}
     >
       {children}
