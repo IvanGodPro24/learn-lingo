@@ -104,7 +104,8 @@
   .logo-text,
   .register-btn,
   .log-in-btn,
-  .log-out-text {
+  .log-out-text,
+  .hidden {
     display: none;
   }
 }

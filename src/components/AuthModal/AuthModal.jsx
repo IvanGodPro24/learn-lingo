@@ -67,6 +67,7 @@ const AuthModal = ({
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: yupResolver(isRegisterModal ? registerSchema : loginSchema),
   });
@@ -85,11 +86,12 @@ const AuthModal = ({
 
       navigate(from, { replace: true });
 
+      reset();
       onClose();
 
       isRegisterModal
-        ? toast.success("Registration successful! Welcome!")
-        : toast.success("Log in successful! Welcome!");
+        ? toast.success(`Registration successful! Welcome, ${username}!`)
+        : toast.success(`Log in successful! Welcome back!`);
     } catch (error) {
       toast.error(error || "An error occurred during auth!");
     }

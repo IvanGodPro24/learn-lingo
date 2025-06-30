@@ -33,10 +33,10 @@ function App() {
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/teachers" element={<TeachersPage />} />
             <Route element={<PrivateRoute to="/" />}>
-              <Route path="/teachers" element={<TeachersPage />} />
+              <Route path="/favorites" element={<FavoritesPage />} />
             </Route>
-            <Route path="/favorites" element={<FavoritesPage />} />
             <Route path="*" element={<Navigate to="/" replace />}></Route>
           </Routes>
         </Suspense>

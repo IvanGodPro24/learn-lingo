@@ -52,12 +52,23 @@ const Header = () => {
         </div>
 
         <nav className={clsx(css.container, css["g-28"])}>
-          <NavLink to="/" className={css.link}>
+          <NavLink to="/" className={clsx(css.link, isLoggedIn && css.hidden)}>
             Home
           </NavLink>
-          <NavLink to="/teachers" className={css.link}>
+          <NavLink
+            to="/teachers"
+            className={clsx(css.link, isLoggedIn && css.hidden)}
+          >
             Teachers
           </NavLink>
+          {isLoggedIn && (
+            <NavLink
+              to="/favorites"
+              className={clsx(css.link, isLoggedIn && css.hidden)}
+            >
+              Favourites
+            </NavLink>
+          )}
         </nav>
 
         <div className={clsx(css.container, css["g-16"])}>
@@ -81,15 +92,6 @@ const Header = () => {
             <>
               <button
                 type="button"
-                className={css.burger}
-                onClick={burgerModal.openModal}
-              >
-                <svg width="20" height="20">
-                  <use href={`${icons}#icon-burger`}></use>
-                </svg>
-              </button>
-              <button
-                type="button"
                 className={clsx(css.container, css["log-in-btn"])}
                 onClick={loginModal.openModal}
               >
@@ -107,6 +109,16 @@ const Header = () => {
               </button>
             </>
           )}
+
+          <button
+            type="button"
+            className={css.burger}
+            onClick={burgerModal.openModal}
+          >
+            <svg width="20" height="20">
+              <use href={`${icons}#icon-burger`}></use>
+            </svg>
+          </button>
         </div>
       </header>
 
@@ -132,6 +144,7 @@ const Header = () => {
         onClose={burgerModal.closeModal}
         isRegister={openRegister}
         isLogIn={openLogIn}
+        isLoggedIn={isLoggedIn}
       />
     </Container>
   );

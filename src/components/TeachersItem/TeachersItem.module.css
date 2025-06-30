@@ -67,6 +67,8 @@
 .icon {
   fill: transparent;
   stroke: var(--black);
+
+  transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .fill {
@@ -81,6 +83,10 @@
   position: absolute;
   top: 20px;
   right: 20px;
+}
+
+.heart-btn:hover .icon {
+  stroke: var(--yellow);
 }
 
 .description-list {

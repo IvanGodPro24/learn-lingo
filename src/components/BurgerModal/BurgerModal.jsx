@@ -23,7 +23,7 @@ const customStyles = {
 
 Modal.setAppElement("#root");
 
-const BurgerModal = ({ isOpen, onClose, isLogIn, isRegister }) => {
+const BurgerModal = ({ isOpen, onClose, isLogIn, isRegister, isLoggedIn }) => {
   return (
     <Modal
       isOpen={isOpen}
@@ -38,12 +38,28 @@ const BurgerModal = ({ isOpen, onClose, isLogIn, isRegister }) => {
       </button>
 
       <div className={css.container}>
-        <Button type="button" onClick={isLogIn}>
-          Log In
-        </Button>
-        <Button type="button" onClick={isRegister}>
-          Register
-        </Button>
+        {isLoggedIn ? (
+          <>
+            <Button to="/" isLink={true} onClick={onClose}>
+              Home
+            </Button>
+            <Button to="/teachers" isLink={true} onClick={onClose}>
+              Teachers
+            </Button>
+            <Button to="/favorites" isLink={true} onClick={onClose}>
+              Favourites
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button type="button" onClick={isLogIn}>
+              Log In
+            </Button>
+            <Button type="button" onClick={isRegister}>
+              Register
+            </Button>
+          </>
+        )}
       </div>
     </Modal>
   );

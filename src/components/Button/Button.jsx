@@ -4,7 +4,7 @@ import clsx from "clsx";
 
 const Button = ({ children, to, isLink = false, onClick, type = "submit" }) => {
   return isLink ? (
-    <Link to={to} className={clsx(css.btn, css.link)}>
+    <Link to={to} className={clsx(css.btn, css.link)} onClick={onClick}>
       {children}
     </Link>
   ) : (
