@@ -3,6 +3,8 @@ import { useState } from "react";
 import icons from "../../img/icons.svg";
 import clsx from "clsx";
 import Button from "../Button/Button";
+import useModal from "../../hooks/useModal";
+import BookModal from "../BookModal/BookModal";
 
 const TeachersItem = ({
   name,
@@ -21,6 +23,8 @@ const TeachersItem = ({
   const [isExtended, setIsExtended] = useState(false);
 
   const toggleExtended = () => setIsExtended((prev) => !prev);
+
+  const bookModal = useModal();
 
   return (
     <>
@@ -68,7 +72,7 @@ const TeachersItem = ({
             </li>
           </ul>
 
-          <button type="button" className={css['heart-btn']}>
+          <button type="button" className={css["heart-btn"]}>
             <svg width="26" height="26" className={css.icon}>
               <use href={`${icons}#icon-heart`}></use>
             </svg>
@@ -109,7 +113,7 @@ const TeachersItem = ({
                   ({ reviewer_name, reviewer_rating, comment }, index) => (
                     <li className={css.reviews} key={index}>
                       <div className={css["reviews-container"]}>
-                        <svg width="44" height="44" className={css.user}>
+                        <svg width="44" height="44">
                           <use href={`${icons}#icon-user`}></use>
                         </svg>
                         <div className={css["rating-container"]}>
@@ -151,8 +155,19 @@ const TeachersItem = ({
           ))}
         </ul>
 
-        {isExtended && <Button type="button">Book trial lesson</Button>}
+        {isExtended && (
+          <Button type="button" onClick={bookModal.openModal}>
+            Book trial lesson
+          </Button>
+        )}
       </div>
+
+      <BookModal
+        isOpen={bookModal.isOpen}
+        onClose={bookModal.closeModal}
+        teacher={`${name} ${surname}`}
+        avatar={avatar_url}
+      />
     </>
   );
 };

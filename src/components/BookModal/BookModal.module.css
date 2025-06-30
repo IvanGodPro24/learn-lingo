@@ -1,0 +1,35 @@
+.teacher-container {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  margin-bottom: 40px;
+}
+
+.internal-teacher-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 100px;
+}
+
+.secondary {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  color: var(--gray);
+}
+
+.title {
+  max-width: 472px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.33;
+
+  margin-bottom: 20px;
+}

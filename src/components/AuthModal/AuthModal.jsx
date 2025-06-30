@@ -109,12 +109,12 @@ const AuthModal = ({
       </button>
 
       <div>
-        <p className={css.title}>{title}</p>
-        <p className={css.text}>{text}</p>
+        <p className="title">{title}</p>
+        <p className="text">{text}</p>
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className={css.container}>
+        <div className="container">
           {isRegisterModal && (
             <div className="relative">
               <input
@@ -122,7 +122,7 @@ const AuthModal = ({
                 type="text"
                 name="username"
                 id={nameId}
-                className={css.input}
+                className="input"
                 placeholder="Name"
               />
               <div className="error">{errors.username?.message}</div>
@@ -135,7 +135,7 @@ const AuthModal = ({
               type="email"
               name="email"
               id={emailId}
-              className={css.input}
+              className="input"
               placeholder="Email"
             />
             <div className="error">{errors.email?.message}</div>
@@ -147,7 +147,7 @@ const AuthModal = ({
               type={isPasswordShown ? "text" : "password"}
               name="password"
               id={passwordId}
-              className={clsx(css.input, css.pwd)}
+              className={clsx("input", css.pwd)}
               placeholder="Password"
             />
             <button

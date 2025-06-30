@@ -8,6 +8,7 @@ import { getTeachers } from "../../redux/teachers/operations";
 import Loader from "../../components/Loader/Loader";
 import TeachersList from "../../components/TeachersList/TeachersList";
 import css from "./TeachersPage.module.css";
+import Container from "../../components/Container/Container";
 
 const TeachersPage = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,9 @@ const TeachersPage = () => {
 
   return (
     <section className={css.section}>
-      <TeachersList teachers={teachers} />
+      <Container>
+        <TeachersList teachers={teachers} />
+      </Container>
     </section>
   );
 };
