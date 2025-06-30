@@ -13,6 +13,7 @@ const handleRejected = (state, action) => {
 
 const initialState = {
   items: [],
+  favourites: [],
   isLoading: false,
   error: null,
 };
