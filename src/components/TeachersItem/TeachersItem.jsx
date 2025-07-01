@@ -8,6 +8,8 @@ import BookModal from "../BookModal/BookModal";
 import { useDispatch, useSelector } from "react-redux";
 import { selectFavourites } from "../../redux/teachers/selectors";
 import { addFavourite, clearFavourite } from "../../redux/teachers/slice";
+import { selectisLoggedIn } from "../../redux/auth/selectors";
+import { toast } from "sonner";
 
 const TeachersItem = ({
   id,
@@ -32,30 +34,37 @@ const TeachersItem = ({
 
   const bookModal = useModal();
 
+  const isLoggedIn = useSelector(selectisLoggedIn);
   const favourites = useSelector(selectFavourites);
 
   const isFavourite = favourites.some((favourite) => favourite?.id === id);
 
   const toggleFavourite = () => {
-    !isFavourite
-      ? dispatch(
-          addFavourite({
-            id,
-            name,
-            surname,
-            avatar_url,
-            conditions,
-            experience,
-            languages,
-            lesson_info,
-            lessons_done,
-            levels,
-            price_per_hour,
-            rating,
-            reviews,
-          })
-        )
-      : dispatch(clearFavourite({ id }));
+    if (isLoggedIn) {
+      !isFavourite
+        ? dispatch(
+            addFavourite({
+              id,
+              name,
+              surname,
+              avatar_url,
+              conditions,
+              experience,
+              languages,
+              lesson_info,
+              lessons_done,
+              levels,
+              price_per_hour,
+              rating,
+              reviews,
+            })
+          )
+        : dispatch(clearFavourite({ id }));
+    } else {
+      toast.error(
+        "This feature is available only for authorized users. Please log in to access it."
+      );
+    }
   };
 
   return (
