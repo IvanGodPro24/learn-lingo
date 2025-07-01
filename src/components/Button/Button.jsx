@@ -2,7 +2,14 @@ import { Link } from "react-router-dom";
 import css from "./Button.module.css";
 import clsx from "clsx";
 
-const Button = ({ children, to, isLink = false, onClick, type = "submit" }) => {
+const Button = ({
+  children,
+  to,
+  isLink = false,
+  isPaginationBtn = false,
+  onClick,
+  type = "submit",
+}) => {
   return isLink ? (
     <Link
       to={to}
@@ -19,7 +26,8 @@ const Button = ({ children, to, isLink = false, onClick, type = "submit" }) => {
       type={type}
       className={clsx(
         css.btn,
-        type === "submit" ? css["submit-btn"] : css["book-btn"]
+        type === "submit" ? css["submit-btn"] : css["book-btn"],
+        isPaginationBtn && "m-auto"
       )}
       onClick={onClick}
     >

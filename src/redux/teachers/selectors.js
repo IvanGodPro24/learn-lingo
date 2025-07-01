@@ -5,3 +5,7 @@ export const selectFavourites = (state) => state.teachers.favourites;
 export const selectIsLoading = (state) => state.teachers.isLoading;
 
 export const selectError = (state) => state.teachers.error;
+
+export const selectHasMore = (state) => state.teachers.hasMore;
+
+export const selectLastKey = (state) => state.teachers.lastKey;

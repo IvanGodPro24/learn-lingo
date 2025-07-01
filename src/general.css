@@ -29,5 +29,10 @@
 
 .section {
   padding-top: 32px;
+  padding-bottom: 32px;
   background: var(--light-gray);
+}
+
+.m-auto {
+  margin: 0 auto;
 }

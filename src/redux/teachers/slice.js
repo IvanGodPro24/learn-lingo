@@ -16,6 +16,8 @@ const initialState = {
   favourites: [],
   isLoading: false,
   error: null,
+  hasMore: true,
+  lastKey: null,
 };
 
 const teachersSlice = createSlice({
@@ -33,13 +35,28 @@ const teachersSlice = createSlice({
         (favourite) => favourite.id !== action.payload.id
       );
     },
+
+    resetTeachers(state) {
+      state.items = [];
+      state.hasMore = true;
+      state.lastKey = null;
+    },
   },
 
   extraReducers: (builder) => {
     builder
       .addCase(getTeachers.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.items = action.payload;
+        const { teachers, hasMore, lastKey, isLoadMore } = action.payload;
+
+        if (isLoadMore) {
+          state.items = [...state.items, ...teachers];
+        } else {
+          state.items = teachers;
+        }
+
+        state.hasMore = hasMore;
+        state.lastKey = lastKey;
       })
 
       .addMatcher((action) => action.type.endsWith("pending"), handlePending)
@@ -47,6 +64,7 @@ const teachersSlice = createSlice({
   },
 });
 
-export const { addFavourite, clearFavourite } = teachersSlice.actions;
+export const { addFavourite, clearFavourite, resetTeachers } =
+  teachersSlice.actions;
 
 export default teachersSlice.reducer;
