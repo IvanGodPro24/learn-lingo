@@ -26,3 +26,8 @@
   text-decoration: underline;
   text-decoration-skip-ink: none;
 }
+
+.section {
+  padding-top: 32px;
+  background: var(--light-gray);
+}

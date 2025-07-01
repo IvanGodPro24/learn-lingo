@@ -22,6 +22,12 @@
   max-width: 280px;
 }
 
+.explore {
+  padding: 16px 24px !important;
+  max-width: 60%;
+  margin: 0 auto;
+}
+
 .submit-btn {
   min-width: 100%;
   padding: 16px 187px;

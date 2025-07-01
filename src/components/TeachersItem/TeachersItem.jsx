@@ -5,8 +5,12 @@ import clsx from "clsx";
 import Button from "../Button/Button";
 import useModal from "../../hooks/useModal";
 import BookModal from "../BookModal/BookModal";
+import { useDispatch, useSelector } from "react-redux";
+import { selectFavourites } from "../../redux/teachers/selectors";
+import { addFavourite, clearFavourite } from "../../redux/teachers/slice";
 
 const TeachersItem = ({
+  id,
   name,
   surname,
   avatar_url,
@@ -20,11 +24,39 @@ const TeachersItem = ({
   rating,
   reviews,
 }) => {
+  const dispatch = useDispatch();
+
   const [isExtended, setIsExtended] = useState(false);
 
   const toggleExtended = () => setIsExtended((prev) => !prev);
 
   const bookModal = useModal();
+
+  const favourites = useSelector(selectFavourites);
+
+  const isFavourite = favourites.some((favourite) => favourite?.id === id);
+
+  const toggleFavourite = () => {
+    !isFavourite
+      ? dispatch(
+          addFavourite({
+            id,
+            name,
+            surname,
+            avatar_url,
+            conditions,
+            experience,
+            languages,
+            lesson_info,
+            lessons_done,
+            levels,
+            price_per_hour,
+            rating,
+            reviews,
+          })
+        )
+      : dispatch(clearFavourite({ id }));
+  };
 
   return (
     <>
@@ -72,8 +104,16 @@ const TeachersItem = ({
             </li>
           </ul>
 
-          <button type="button" className={css["heart-btn"]}>
-            <svg width="26" height="26" className={css.icon}>
+          <button
+            type="button"
+            className={css["heart-btn"]}
+            onClick={toggleFavourite}
+          >
+            <svg
+              width="26"
+              height="26"
+              className={clsx(css.icon, { [css.fill]: isFavourite })}
+            >
               <use href={`${icons}#icon-heart`}></use>
             </svg>
           </button>

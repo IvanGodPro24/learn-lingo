@@ -23,6 +23,18 @@ const teachersSlice = createSlice({
 
   initialState,
 
+  reducers: {
+    addFavourite(state, action) {
+      state.favourites.push(action.payload);
+    },
+
+    clearFavourite(state, action) {
+      state.favourites = state.favourites.filter(
+        (favourite) => favourite.id !== action.payload.id
+      );
+    },
+  },
+
   extraReducers: (builder) => {
     builder
       .addCase(getTeachers.fulfilled, (state, action) => {
@@ -34,5 +46,7 @@ const teachersSlice = createSlice({
       .addMatcher((action) => action.type.endsWith("rejected"), handleRejected);
   },
 });
+
+export const { addFavourite, clearFavourite } = teachersSlice.actions;
 
 export default teachersSlice.reducer;

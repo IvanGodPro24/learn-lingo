@@ -7,7 +7,6 @@ import { useEffect } from "react";
 import { getTeachers } from "../../redux/teachers/operations";
 import Loader from "../../components/Loader/Loader";
 import TeachersList from "../../components/TeachersList/TeachersList";
-import css from "./TeachersPage.module.css";
 import Container from "../../components/Container/Container";
 
 const TeachersPage = () => {
@@ -22,7 +21,7 @@ const TeachersPage = () => {
   if (isLoading) return <Loader />;
 
   return (
-    <section className={css.section}>
+    <section className="section">
       <Container>
         <TeachersList teachers={teachers} />
       </Container>
