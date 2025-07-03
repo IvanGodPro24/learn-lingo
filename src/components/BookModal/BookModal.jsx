@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "sonner";
 import RadioGroup from "../RadioGroup/RadioGroup";
+import { items } from "../../constants/constants";
 
 const customStyles = {
   overlay: {
@@ -55,29 +56,6 @@ const BookModal = ({ isOpen, onClose, teacher, avatar }) => {
   const nameId = useId();
   const emailId = useId();
   const numberId = useId();
-
-  const items = [
-    {
-      value: "Career and business",
-      label: "Career and business",
-    },
-    {
-      value: "Lesson for kids",
-      label: "Lesson for kids",
-    },
-    {
-      value: "Living abroad",
-      label: "Living abroad",
-    },
-    {
-      value: "Exams and coursework",
-      label: "Exams and coursework",
-    },
-    {
-      value: "Culture, travel or hobby",
-      label: "Culture, travel or hobby",
-    },
-  ];
 
   const [value, setValue] = useState("Career and business");
 

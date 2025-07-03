@@ -17,7 +17,7 @@ const initialState = {
   isLoading: false,
   error: null,
   hasMore: true,
-  lastKey: null,
+  page: 1,
 };
 
 const teachersSlice = createSlice({
@@ -47,16 +47,16 @@ const teachersSlice = createSlice({
     builder
       .addCase(getTeachers.fulfilled, (state, action) => {
         state.isLoading = false;
-        const { teachers, hasMore, lastKey, isLoadMore } = action.payload;
+        const { teachers, hasMore, page } = action.payload;
 
-        if (isLoadMore) {
+        if (page > 1) {
           state.items = [...state.items, ...teachers];
         } else {
           state.items = teachers;
         }
 
         state.hasMore = hasMore;
-        state.lastKey = lastKey;
+        state.page = page;
       })
 
       .addMatcher((action) => action.type.endsWith("pending"), handlePending)

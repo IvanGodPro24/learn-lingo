@@ -2,41 +2,45 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   selectHasMore,
   selectIsLoading,
-  selectLastKey,
   selectTeachers,
 } from "../../redux/teachers/selectors";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getTeachers } from "../../redux/teachers/operations";
+import css from "./TeachersPage.module.css";
+import icons from "../../img/icons.svg";
 import Loader from "../../components/Loader/Loader";
 import TeachersList from "../../components/TeachersList/TeachersList";
 import Container from "../../components/Container/Container";
 import Button from "../../components/Button/Button";
 import { resetTeachers } from "../../redux/teachers/slice";
+import TeacherFilter from "../../components/TeacherFilter/TeacherFilter";
 
 const TeachersPage = () => {
   const dispatch = useDispatch();
   const teachers = useSelector(selectTeachers);
   const isLoading = useSelector(selectIsLoading);
   const hasMore = useSelector(selectHasMore);
-  const lastKey = useSelector(selectLastKey);
 
   const perPage = 4;
 
+  const [filters, setFilters] = useState({
+    language: null,
+    level: null,
+    price: null,
+  });
+
+  const [page, setPage] = useState(1);
+
   useEffect(() => {
     dispatch(resetTeachers());
-    dispatch(getTeachers({ perPage }));
-  }, [dispatch, perPage]);
+    setPage(1);
+    dispatch(getTeachers({ perPage, page: 1, filters }));
+  }, [dispatch, perPage, filters]);
 
   const handleLoadMore = () => {
-    if (!isLoading && hasMore && lastKey) {
-      dispatch(
-        getTeachers({
-          perPage,
-          lastKey,
-          isLoadMore: true,
-        })
-      );
-    }
+    const nextPage = page + 1;
+    dispatch(getTeachers({ perPage, page: nextPage, filters }));
+    setPage(nextPage);
   };
 
   if (isLoading && teachers.length === 0) {
@@ -46,17 +50,34 @@ const TeachersPage = () => {
   return (
     <section className="section">
       <Container>
-        <TeachersList teachers={teachers} />
+        <TeacherFilter filters={filters} onFilterChange={setFilters} />
 
-        {hasMore && (
-          <Button
-            type="button"
-            onClick={handleLoadMore}
-            disabled={isLoading}
-            isPaginationBtn={true}
-          >
-            {isLoading ? "Loading..." : "Load More"}
-          </Button>
+        {!isLoading && teachers.length === 0 ? (
+          <div className={css["no-results"]}>
+            <svg className={css["no-results-icon"]}>
+              <use href={`${icons}#icon-search`}></use>
+            </svg>
+            <h3 className={css["no-results-title"]}>No teachers found</h3>
+            <p className={css["no-results-text"]}>
+              We couldn't find any teachers matching your search criteria. Try
+              adjusting your filters to find what you're looking for.
+            </p>
+          </div>
+        ) : (
+          <>
+            <TeachersList teachers={teachers} />
+
+            {hasMore && (
+              <Button
+                type="button"
+                onClick={handleLoadMore}
+                disabled={isLoading}
+                isPaginationBtn={true}
+              >
+                {isLoading ? "Loading..." : "Load More"}
+              </Button>
+            )}
+          </>
         )}
       </Container>
     </section>
