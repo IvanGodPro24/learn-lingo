@@ -24,8 +24,10 @@ const TeachersPage = () => {
   const perPage = 4;
 
   const [filters, setFilters] = useState({
+    name: "",
     language: null,
     level: null,
+    rating: null,
     price: null,
   });
 

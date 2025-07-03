@@ -16,7 +16,7 @@ const TeacherSelect = ({
 
   return (
     <>
-      <label htmlFor={id} className={css.label}>
+      <label htmlFor={id} className='label'>
         {label}
       </label>
       <Select

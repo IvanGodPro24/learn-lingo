@@ -26,18 +26,31 @@ export const getTeachers = createAsyncThunk(
       }));
 
       const filteredTeachers = teachersAll.filter((teacher) => {
+        const matchesName =
+          !filters.name ||
+          teacher.name.toLowerCase().includes(filters.name.toLowerCase());
+
         const matchesLanguage =
           !filters.language || teacher.languages?.includes(filters.language);
 
         const matchesLevel =
           !filters.level || teacher.levels?.includes(filters.level);
 
+        const matchesRating =
+          !filters.rating || teacher.rating >= filters.rating;
+
         const matchesPrice =
           !filters.price ||
           (teacher.price_per_hour >= filters.price[0] &&
             teacher.price_per_hour <= filters.price[1]);
 
-        return matchesLanguage && matchesLevel && matchesPrice;
+        return (
+          matchesName &&
+          matchesLanguage &&
+          matchesLevel &&
+          matchesRating &&
+          matchesPrice
+        );
       });
 
       const startIndex = (page - 1) * perPage;

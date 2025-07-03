@@ -1,9 +1,13 @@
 import css from "./TeacherFilter.module.css";
+import icons from "../../img/icons.svg";
 import TeacherSelect from "../TeacherSelect/TeacherSelect";
+import { useId } from "react";
+import { useMemo } from "react";
 import {
   languageOptions,
   levelsOptions,
   priceOptions,
+  ratingOptions,
 } from "../../constants/constants";
 
 const customStyles = {
@@ -51,6 +55,8 @@ const customStyles = {
 };
 
 const TeacherFilter = ({ filters, onFilterChange }) => {
+  const nameId = useId();
+
   const handleFilterChange = (field) => (selectedOption) => {
     const newFilters = {
       ...filters,
@@ -59,8 +65,32 @@ const TeacherFilter = ({ filters, onFilterChange }) => {
     onFilterChange(newFilters);
   };
 
+  const isAnyFilterActive = useMemo(() => {
+    return (
+      filters.name.trim() !== "" ||
+      filters.language !== null ||
+      filters.level !== null ||
+      filters.rating !== null ||
+      filters.price !== null
+    );
+  }, [filters]);
+
   return (
     <div className={css.container}>
+      <div className={css["select-container"]}>
+        <label htmlFor={nameId} className="label">
+          Name
+        </label>
+        <input
+          id={nameId}
+          type="text"
+          placeholder="Enter name"
+          className={css.input}
+          value={filters.name}
+          onChange={(e) => onFilterChange({ ...filters, name: e.target.value })}
+        />
+      </div>
+
       <div className={css["select-container"]}>
         <TeacherSelect
           label="Languages"
@@ -85,6 +115,17 @@ const TeacherFilter = ({ filters, onFilterChange }) => {
 
       <div className={css["select-container"]}>
         <TeacherSelect
+          label="Rating"
+          options={ratingOptions}
+          styles={customStyles}
+          placeholder="Select rating"
+          value={filters.rating}
+          onChange={handleFilterChange("rating")}
+        />
+      </div>
+
+      <div className={css["select-container"]}>
+        <TeacherSelect
           label="Price"
           options={priceOptions}
           styles={customStyles}
@@ -93,6 +134,26 @@ const TeacherFilter = ({ filters, onFilterChange }) => {
           onChange={handleFilterChange("price")}
         />
       </div>
+
+      {isAnyFilterActive && (
+        <button
+          type="button"
+          className={css.reset}
+          onClick={() =>
+            onFilterChange({
+              name: "",
+              language: null,
+              level: null,
+              rating: null,
+              price: null,
+            })
+          }
+        >
+          <svg width="30" height="30">
+            <use href={`${icons}#icon-reset-filter`}></use>
+          </svg>
+        </button>
+      )}
     </div>
   );
 };
