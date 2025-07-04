@@ -50,39 +50,46 @@ const TeachersPage = () => {
   }
 
   return (
-    <section className="section">
-      <Container>
-        <TeacherFilter filters={filters} onFilterChange={setFilters} />
+    <>
+      <title>Teachers</title>
 
-        {!isLoading && teachers.length === 0 ? (
-          <div className={css["no-results"]}>
-            <svg className={css["no-results-icon"]}>
-              <use href={`${icons}#icon-search`}></use>
-            </svg>
-            <h3 className={css["no-results-title"]}>No teachers found</h3>
-            <p className={css["no-results-text"]}>
-              We couldn't find any teachers matching your search criteria. Try
-              adjusting your filters to find what you're looking for.
-            </p>
-          </div>
-        ) : (
-          <>
-            <TeachersList teachers={teachers} selectedLevels={filters.level} />
+      <section className="section">
+        <Container>
+          <TeacherFilter filters={filters} onFilterChange={setFilters} />
 
-            {hasMore && (
-              <Button
-                type="button"
-                onClick={handleLoadMore}
-                disabled={isLoading}
-                isPaginationBtn={true}
-              >
-                Load More
-              </Button>
-            )}
-          </>
-        )}
-      </Container>
-    </section>
+          {!isLoading && teachers.length === 0 ? (
+            <div className={css["no-results"]}>
+              <svg className={css["no-results-icon"]}>
+                <use href={`${icons}#icon-search`}></use>
+              </svg>
+              <h3 className={css["no-results-title"]}>No teachers found</h3>
+              <p className={css["no-results-text"]}>
+                We couldn't find any teachers matching your search criteria. Try
+                adjusting your filters to find what you're looking for.
+              </p>
+            </div>
+          ) : (
+            <>
+              <TeachersList
+                teachers={teachers}
+                selectedLevels={filters.level}
+              />
+
+              {hasMore && (
+                <Button
+                  type="button"
+                  onClick={handleLoadMore}
+                  disabled={isLoading}
+                  isPaginationBtn={true}
+                >
+                  Load More
+                </Button>
+              )}
+            </>
+          )}
+        </Container>
+      </section>
+    </>
   );
 };
 
