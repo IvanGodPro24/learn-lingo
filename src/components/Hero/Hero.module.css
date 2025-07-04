@@ -101,6 +101,21 @@
   color: rgba(18, 20, 23, 0.7);
 }
 
+@media (max-width: 424px) {
+  .img-container {
+    min-height: 300px;
+  }
+
+  .avatar-img {
+    width: 200px;
+    bottom: 65%;
+  }
+
+  .mac-img {
+    width: 240px;
+  }
+}
+
 @media (max-width: 1439px) {
   .hero-text-container {
     max-width: 100%;
