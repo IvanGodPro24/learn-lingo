@@ -1,4 +1,7 @@
 :root {
+  --accent: var(--yellow);
+  --accent-light: var(--light-yellow);
+
   --yellow: #f4c550;
   --light-yellow: #fbe9ba;
   --green: #9fbaae;
@@ -12,4 +15,29 @@
   --gray: #8a8a89;
   --light-gray: #f8f8f8;
   --black: #121417;
+}
+
+body.theme-yellow {
+  --accent: var(--yellow);
+  --accent-light: var(--light-yellow);
+}
+
+body.theme-green {
+  --accent: var(--green);
+  --accent-light: var(--light-green);
+}
+
+body.theme-blue {
+  --accent: var(--blue);
+  --accent-light: var(--light-blue);
+}
+
+body.theme-red {
+  --accent: var(--red);
+  --accent-light: var(--light-red);
+}
+
+body.theme-orange {
+  --accent: var(--orange);
+  --accent-light: var(--light-orange);
 }

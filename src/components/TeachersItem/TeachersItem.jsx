@@ -25,6 +25,7 @@ const TeachersItem = ({
   price_per_hour,
   rating,
   reviews,
+  selectedLevels,
 }) => {
   const dispatch = useDispatch();
 
@@ -197,11 +198,19 @@ const TeachersItem = ({
         </button>
 
         <ul className={css["levels-list"]}>
-          {levels.map((level, index) => (
-            <li key={index} className={css["levels-item"]}>
-              <p className={css["levels-text"]}>#{level}</p>
-            </li>
-          ))}
+          {levels.map((level, index) => {
+            const isActive = selectedLevels?.includes(level);
+            return (
+              <li
+                key={index}
+                className={clsx(css["levels-item"], {
+                  [css.active]: isActive,
+                })}
+              >
+                <p className={css["levels-text"]}>#{level}</p>
+              </li>
+            );
+          })}
         </ul>
 
         {isExtended && (

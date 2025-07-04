@@ -1,3 +1,9 @@
+import macYellow from "../img/mac-yellow.png";
+import macBlue from "../img/mac-blue.png";
+import macRed from "../img/mac-red.png";
+import macGreen from "../img/mac-green.png";
+import macOrange from "../img/mac-orange.png";
+
 export const items = [
   {
     value: "Career and business",
@@ -20,6 +26,22 @@ export const items = [
     label: "Culture, travel or hobby",
   },
 ];
+
+export const themes = [
+  "theme-yellow",
+  "theme-green",
+  "theme-blue",
+  "theme-red",
+  "theme-orange",
+];
+
+export const macImages = {
+  "theme-yellow": macYellow,
+  "theme-blue": macBlue,
+  "theme-red": macRed,
+  "theme-green": macGreen,
+  "theme-orange": macOrange,
+};
 
 export const languageOptions = [
   { value: "French", label: "French" },

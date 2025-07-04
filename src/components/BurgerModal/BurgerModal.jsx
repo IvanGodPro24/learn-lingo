@@ -2,6 +2,7 @@ import Modal from "react-modal";
 import css from "./BurgerModal.module.css";
 import icons from "../../img/icons.svg";
 import Button from "../Button/Button";
+import ThemePicker from "../ThemePicker/ThemePicker";
 
 const customStyles = {
   content: {
@@ -38,6 +39,8 @@ const BurgerModal = ({ isOpen, onClose, isLogIn, isRegister, isLoggedIn }) => {
       </button>
 
       <div className={css.container}>
+        <ThemePicker className="burger" />
+
         {isLoggedIn ? (
           <>
             <Button to="/" isLink={true} onClick={onClose}>

@@ -17,11 +17,11 @@ const customStyles = {
     borderRadius: "14px",
     cursor: "pointer",
     border: state.isFocused
-      ? "1px solid var(--yellow)"
+      ? "1px solid var(--accent)"
       : "1px solid transparent",
-    boxShadow: state.isFocused ? "0 0 0 1px var(--yellow)" : "none",
+    boxShadow: state.isFocused ? "0 0 0 1px var(--accent)" : "none",
     "&:hover": {
-      borderColor: "var(--yellow)",
+      borderColor: "var(--accent)",
     },
   }),
 
@@ -33,7 +33,7 @@ const customStyles = {
       width: "6px",
     },
     "&::-webkit-scrollbar-thumb": {
-      background: "var(--yellow)",
+      background: "var(--accent)",
       borderRadius: "3px",
     },
   }),
@@ -59,10 +59,10 @@ const customStyles = {
     borderRadius: "12px",
     cursor: "pointer",
     marginBottom: "4px",
-    backgroundColor: state.isSelected ? "var(--light-yellow)" : "white",
+    backgroundColor: state.isSelected ? "var(--accent-light)" : "white",
     color: state.isSelected ? "black" : "rgba(18, 20, 23, 0.2)",
     "&:hover": {
-      backgroundColor: "var(--light-yellow)",
+      backgroundColor: "var(--accent-light)",
       color: "black",
     },
     "&:last-child": {
@@ -72,7 +72,7 @@ const customStyles = {
 
   multiValue: (provided) => ({
     ...provided,
-    backgroundColor: "var(--yellow)",
+    backgroundColor: "var(--accent)",
     borderRadius: "8px",
     padding: "4px 8px",
     margin: 0,
@@ -104,8 +104,8 @@ const TeacherFilter = ({ filters, onFilterChange }) => {
   const isAnyFilterActive = useMemo(() => {
     return (
       filters.name.trim() !== "" ||
-      filters.language !== null ||
-      filters.level !== null ||
+      filters.language.length > 0 ||
+      filters.level.length > 0 ||
       filters.rating !== null ||
       filters.price !== null
     );
@@ -180,8 +180,8 @@ const TeacherFilter = ({ filters, onFilterChange }) => {
           onClick={() =>
             onFilterChange({
               name: "",
-              language: null,
-              level: null,
+              language: [],
+              level: [],
               rating: null,
               price: null,
             })

@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./auth/slice";
 import teachersReducer from "./teachers/slice";
+import themeReducer from "./theme/slice";
 
 import {
   persistStore,
@@ -20,12 +21,20 @@ const persistConfig = {
   whitelist: ["favourites"],
 };
 
-const persistedReducer = persistReducer(persistConfig, teachersReducer);
+const themePersistConfig = {
+  key: "theme",
+  storage,
+};
+
+const persistedTeacherReducer = persistReducer(persistConfig, teachersReducer);
+
+const persistedThemeReducer = persistReducer(themePersistConfig, themeReducer);
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    teachers: persistedReducer,
+    teachers: persistedTeacherReducer,
+    theme: persistedThemeReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

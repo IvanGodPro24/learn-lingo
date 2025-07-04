@@ -5,6 +5,7 @@ import { lazy, Suspense } from "react";
 import PrivateRoute from "./PrivateRoute";
 import { useDispatch, useSelector } from "react-redux";
 import { selectIsInitialized } from "./redux/auth/selectors";
+import { selectTheme } from "./redux/theme/selectors";
 import { useEffect } from "react";
 import { current } from "./redux/auth/operations";
 import Loader from "./components/Loader/Loader";
@@ -19,9 +20,13 @@ function App() {
 
   const isInitialized = useSelector(selectIsInitialized);
 
+  const theme = useSelector(selectTheme);
+
   useEffect(() => {
     dispatch(current());
-  }, [dispatch]);
+    document.body.className = "";
+    document.body.classList.add(theme);
+  }, [dispatch, theme]);
 
   return !isInitialized ? (
     <Loader />

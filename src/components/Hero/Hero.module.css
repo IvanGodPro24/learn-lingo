@@ -32,7 +32,7 @@
   font-style: italic;
   font-weight: 400;
 
-  background-color: var(--light-yellow);
+  background-color: var(--accent-light);
   border-radius: 8px;
 }
 
@@ -49,7 +49,7 @@
   min-height: 530px;
   border-radius: 30px;
 
-  background: var(--light-yellow);
+  background: var(--accent-light);
 }
 
 .avatar-img {
@@ -72,7 +72,7 @@
   justify-content: center;
   align-items: center;
 
-  border: 1.5px dashed var(--yellow);
+  border: 1.5px dashed var(--accent);
   border-radius: 30px;
   padding: 40px 123px;
 

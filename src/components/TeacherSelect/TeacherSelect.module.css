@@ -16,7 +16,7 @@
 }
 
 .close:hover {
-  stroke: var(--yellow);
+  stroke: var(--accent);
 }
 
 .multi:hover {

@@ -3,7 +3,7 @@
   justify-content: center;
   align-items: center;
 
-  border: 3px solid var(--light-yellow);
+  border: 3px solid var(--accent-light);
   padding: 12px;
   border-radius: 100px;
 
@@ -73,7 +73,7 @@
 
 .fill {
   stroke: transparent;
-  fill: var(--yellow);
+  fill: var(--accent);
 }
 
 .price {
@@ -87,7 +87,7 @@
 }
 
 .heart-btn:hover .icon {
-  stroke: var(--yellow);
+  stroke: var(--accent);
 }
 
 .description-list {
@@ -114,7 +114,7 @@
 }
 
 .read:hover {
-  color: var(--yellow);
+  color: var(--accent);
 }
 
 .levels-list {
@@ -124,17 +124,17 @@
   gap: 8px;
 }
 
-.levels-item:first-child {
-  background: var(--yellow);
-  border: none;
-}
-
 .levels-item {
   padding: 8px 12px;
 
   border-radius: 35px;
 
   border: 1px solid rgba(18, 20, 23, 0.2);
+}
+
+.levels-item.active {
+  background: var(--accent);
+  border: none;
 }
 
 .levels-text {

@@ -25,8 +25,8 @@ const TeachersPage = () => {
 
   const [filters, setFilters] = useState({
     name: "",
-    language: null,
-    level: null,
+    language: [],
+    level: [],
     rating: null,
     price: null,
   });
@@ -67,7 +67,7 @@ const TeachersPage = () => {
           </div>
         ) : (
           <>
-            <TeachersList teachers={teachers} />
+            <TeachersList teachers={teachers} selectedLevels={filters.level} />
 
             {hasMore && (
               <Button
@@ -76,7 +76,7 @@ const TeachersPage = () => {
                 disabled={isLoading}
                 isPaginationBtn={true}
               >
-                {isLoading ? "Loading..." : "Load More"}
+                Load More
               </Button>
             )}
           </>

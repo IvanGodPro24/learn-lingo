@@ -1,10 +1,16 @@
 import Container from "../Container/Container";
 import css from "./Hero.module.css";
+import { useSelector } from "react-redux";
+import { selectTheme } from "../../redux/theme/selectors";
+import macYellow from "../../img/mac-yellow.png";
+import { macImages } from "../../constants/constants";
 import avatar from "../../img/avatar.png";
-import mac from "../../img/mac-yellow.png";
 import Button from "../Button/Button";
 
 const Hero = () => {
+  const theme = useSelector(selectTheme);
+  const macImage = macImages[theme] || macYellow;
+
   return (
     <section>
       <Container>
@@ -32,7 +38,12 @@ const Hero = () => {
               className={css["avatar-img"]}
               width="339"
             />
-            <img src={mac} alt="mac" className={css["mac-img"]} width="391" />
+            <img
+              src={macImage}
+              alt="mac"
+              className={css["mac-img"]}
+              width="391"
+            />
           </div>
         </div>
 

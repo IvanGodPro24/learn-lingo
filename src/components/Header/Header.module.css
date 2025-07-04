@@ -18,7 +18,7 @@
 
 .logo-link:hover .logo-text,
 .logo-link:focus .logo-text {
-  color: var(--yellow);
+  color: var(--accent);
 }
 
 .avatar {
@@ -28,7 +28,7 @@
   width: 32px;
   height: 32px;
   border-radius: 100%;
-  background-color: var(--yellow);
+  background-color: var(--accent);
 }
 
 .logo-text {
@@ -40,7 +40,7 @@
 
 .log-in-icon {
   fill: transparent;
-  stroke: var(--yellow);
+  stroke: var(--accent);
 
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -57,12 +57,12 @@
 .log-in-btn:focus,
 .log-out-btn:hover,
 .log-out-btn:focus {
-  color: var(--yellow);
+  color: var(--accent);
 }
 
 .log-in-btn:hover .log-in-icon,
 .log-out-btn:hover .log-in-icon {
-  stroke: var(--orange);
+  stroke: var(--accent-light);
   transform: translateX(2px);
 }
 
@@ -97,7 +97,7 @@
 }
 
 .burger:hover {
-  fill: var(--yellow);
+  fill: var(--accent);
 }
 
 @media (max-width: 767px) {

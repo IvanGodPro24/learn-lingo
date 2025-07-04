@@ -32,12 +32,12 @@ input[type="radio"]:checked + .custom-radio::after {
   left: 50%;
   width: 12px;
   height: 12px;
-  background-color: var(--yellow);
+  background-color: var(--accent);
   border-radius: 50%;
   transform: translate(-50%, -50%);
 }
 
 .label:hover .custom-radio,
 input[type="radio"]:checked + .custom-radio {
-  border-color: var(--yellow);
+  border-color: var(--accent);
 }

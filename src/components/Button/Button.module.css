@@ -3,7 +3,7 @@
   padding: 16px 88px;
   border-radius: 12px;
 
-  background: var(--yellow);
+  background: var(--accent);
 
   font-weight: 700;
   font-size: 18px;
@@ -15,7 +15,7 @@
 
 .btn:hover,
 .btn:focus {
-  background: var(--light-yellow);
+  background: var(--accent-light);
 }
 
 .link {

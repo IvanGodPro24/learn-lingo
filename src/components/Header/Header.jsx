@@ -11,6 +11,7 @@ import Container from "../Container/Container";
 import useModal from "../../hooks/useModal";
 import AuthModal from "../AuthModal/AuthModal";
 import BurgerModal from "../BurgerModal/BurgerModal";
+import ThemePicker from "../ThemePicker/ThemePicker";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -70,6 +71,8 @@ const Header = () => {
             </NavLink>
           )}
         </nav>
+
+        <ThemePicker className="header" />
 
         <div className={clsx(css.container, css["g-16"])}>
           {isLoggedIn ? (
