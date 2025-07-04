@@ -31,10 +31,18 @@ export const getTeachers = createAsyncThunk(
           teacher.name.toLowerCase().includes(filters.name.toLowerCase());
 
         const matchesLanguage =
-          !filters.language || teacher.languages?.includes(filters.language);
+          !filters.language ||
+          (Array.isArray(filters.language)
+            ? filters.language.every((lang) =>
+                teacher.languages?.includes(lang)
+              )
+            : teacher.languages?.includes(filters.language));
 
         const matchesLevel =
-          !filters.level || teacher.levels?.includes(filters.level);
+          !filters.level ||
+          (Array.isArray(filters.level)
+            ? filters.level.every((lev) => teacher.levels?.includes(lev))
+            : teacher.levels?.includes(filters.level));
 
         const matchesRating =
           !filters.rating || teacher.rating >= filters.rating;

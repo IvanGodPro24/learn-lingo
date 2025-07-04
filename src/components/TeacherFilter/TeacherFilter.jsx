@@ -25,6 +25,19 @@ const customStyles = {
     },
   }),
 
+  menuList: (provided) => ({
+    ...provided,
+    maxHeight: "200px",
+    overflowY: "auto",
+    "&::-webkit-scrollbar": {
+      width: "6px",
+    },
+    "&::-webkit-scrollbar-thumb": {
+      background: "var(--yellow)",
+      borderRadius: "3px",
+    },
+  }),
+
   menu: (provided) => ({
     ...provided,
     borderRadius: "12px",
@@ -34,7 +47,11 @@ const customStyles = {
 
   valueContainer: (provided) => ({
     ...provided,
-    padding: "0 18px",
+    display: "flex",
+    gap: "5px",
+    maxHeight: "70px",
+    overflowY: "auto",
+    padding: "5px 18px",
   }),
 
   option: (provided, state) => ({
@@ -52,6 +69,21 @@ const customStyles = {
       marginBottom: 0,
     },
   }),
+
+  multiValue: (provided) => ({
+    ...provided,
+    backgroundColor: "var(--yellow)",
+    borderRadius: "8px",
+    padding: "4px 8px",
+    margin: 0,
+  }),
+
+  multiValueLabel: (provided) => ({
+    ...provided,
+    fontSize: "14px",
+    fontWeight: "500",
+    padding: 0,
+  }),
 };
 
 const TeacherFilter = ({ filters, onFilterChange }) => {
@@ -60,7 +92,11 @@ const TeacherFilter = ({ filters, onFilterChange }) => {
   const handleFilterChange = (field) => (selectedOption) => {
     const newFilters = {
       ...filters,
-      [field]: selectedOption ? selectedOption.value : null,
+      [field]: selectedOption
+        ? Array.isArray(selectedOption)
+          ? selectedOption.map((opt) => opt.value)
+          : selectedOption.value
+        : null,
     };
     onFilterChange(newFilters);
   };
@@ -97,6 +133,7 @@ const TeacherFilter = ({ filters, onFilterChange }) => {
           options={languageOptions}
           styles={customStyles}
           placeholder="Select language"
+          isMulti={true}
           value={filters.language}
           onChange={handleFilterChange("language")}
         />
@@ -108,6 +145,7 @@ const TeacherFilter = ({ filters, onFilterChange }) => {
           options={levelsOptions}
           styles={customStyles}
           placeholder="Select level"
+          isMulti={true}
           value={filters.level}
           onChange={handleFilterChange("level")}
         />

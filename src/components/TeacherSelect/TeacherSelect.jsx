@@ -9,6 +9,7 @@ const TeacherSelect = ({
   options,
   styles,
   placeholder,
+  isMulti = false,
   onChange,
   value,
 }) => {
@@ -16,15 +17,21 @@ const TeacherSelect = ({
 
   return (
     <>
-      <label htmlFor={id} className='label'>
+      <label htmlFor={id} className="label">
         {label}
       </label>
       <Select
+        name="filter"
         options={options}
         styles={styles}
+        isMulti={isMulti}
         isClearable={true}
         isSearchable={false}
-        value={options.find((option) => option.value === value)}
+        value={
+          isMulti
+            ? options.filter((option) => value?.includes(option.value))
+            : options.find((option) => option.value === value)
+        }
         onChange={onChange}
         components={{
           DropdownIndicator: ({ innerProps }) => (
@@ -40,6 +47,16 @@ const TeacherSelect = ({
               className={clsx(css.container, css["close-container"])}
             >
               <svg width="20" height="20" className={css.close}>
+                <use href={`${icons}#icon-close`}></use>
+              </svg>
+            </div>
+          ),
+          MultiValueRemove: ({ innerProps }) => (
+            <div
+              {...innerProps}
+              className={clsx(css.container, css["close-container"])}
+            >
+              <svg width="16" height="16" className={clsx(css.close, css.multi)}>
                 <use href={`${icons}#icon-close`}></use>
               </svg>
             </div>
