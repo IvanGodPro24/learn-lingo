@@ -8,6 +8,8 @@ On boarding the application, users can:
 - Browse and filter a list of language teachers on the **Teachers** page.
 - Save favorite teachers for quick access on the **Favorites** page.
 
+---
+
 ## 🌐 Live Demo
 
 [Live demo](https://learn-lingo-project.netlify.app)
@@ -27,9 +29,10 @@ On boarding the application, users can:
 ## 🛠️ Tech Stack
 
 - **React** — Component-based UI
+- **TypeScript** — Strict project typing
 - **React Router** — Client-side routing
 - **React Hook Form** & **Yup** — Form state and validation
-- **Redux** — Global state management (favorites, filters, auth)
+- **Redux** — Global state management (auth, filters, favorites)
 - **Firebase** — Authentication & Realtime Database
 - **Vite** — Fast build and development environment
 
@@ -43,12 +46,12 @@ learn-lingo/
 ├── src/
 │   ├── components/        # Components
 │   ├── pages/             # Routing pages
-│   ├── redux/             # store.js and slices
-│   ├── App.jsx            # Routing setup
-│   └── main.jsx           # Entry point
+│   ├── redux/             # store.ts and slices
+│   ├── App.tsx            # Routing setup
+│   └── main.tsx           # Entry point
 ├── .gitignore
 ├── package.json
-├── vite.config.js
+├── vite.config.ts
 └── README.md
 ```
 
